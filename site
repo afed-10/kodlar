@@ -1,0 +1,29 @@
+from flask import Flask
+import random
+
+app = Flask(__name__)
+gercekler = ["Elon Musk, sosyal ağların içeriği görüntülemek için mümkün olduğunca fazla zaman harcamamız için bizi platformun içinde tutmak üzere tasarlandığını iddia ediyor.",
+            "2018 yılında yapılan bir araştırmaya göre 18-34 yaş arası kişilerin %50'den fazlası akıllı telefonlarına bağımlı olduğunu düşünüyor.",
+            "Sosyal ağların olumlu ve olumsuz yanları var ve bu platformları kullanırken her ikisinin de farkında olmalıyız.",
+            "Teknoloji bağımlılığı çalışması, modern bilimsel araştırmanın en alakalı alanlarından biridir."]
+
+@app.route("/")
+def hello():
+    return "<a href='/rastgele-gercek'><h1>Rastgele bir gerçeği görüntüle!</h1></a>"
+
+@app.route("/rastgele-gercek")
+def fun_fact():
+    rastgele_gercek = random.choice(gercekler)
+
+
+    return f"<p>{rastgele_gercek}</p><a href='/sakiz'><h1>Sakız nasıl yapılır!</h1></a>"
+
+@app.route("/sakiz")
+def halo():
+    return f"<a>Manilkara zopata ağacından elden edilen reçineyle imalata başlanılır. Bu ağaçta lâteks denilen kimyasal bir madde mevcuttur. Sakız üretiminin ikinci aşamasında bu kimyasal madde temizlenir. Son aşamada ise ağaçtan elde edilen reçinenin içerisine şeker, nişasta, aroma verici maddeler eklenir ve sakızlar meydana gelir.</a><a href='/arina'><h1>Arina Fedorovtseva kimdir!</h1></a>"
+
+@app.route("/arina")
+def hao():
+    return f"<a>2004'te doğan Fedorovtseva, bir süre yüzücülük yaptıktan sonra voleybola başladı. Dinamo Kazan'ın alt yaş kategorilerinde forma giymeye başlayan Fedorovtseva, 2019'dan itibaren A takımda oynamaya başladı. 2021-22 sezonu için Türkiye'de Fenerbahçe Opet ile sözleşme imzaladı. 2021-22 yaz sezonunda Rusya başkanı Vladimir Putin'in kararıyla sporu geliştirmek adına kurulan Sirius Federal Bölgesi'nin voleybol takımında forma giydi. Yaz sezonu tamamlandıktan sonra, normal sezonda forma giydi Fenerbahçe'ye geri döndü ve 2023-24 sezonunun sonuna kadar takımın bir parçası oldu. 2024-25 sezonunun ilk yarısını Çin Ligi takımlarından Şangay'da geçirecek olan Fedorovtseva, sezonunun ikinci yarısında yeniden Fenerbahçe'ye döneceği iddia edildi.</a>"
+
+app.run(debug=True)
